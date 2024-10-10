@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Smiley Face on Canvas</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="400" height="400" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
+
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById('myCanvas');
+            var ctx = canvas.getContext('2d');
+
+            // 绘制背景
+            ctx.fillStyle = 'green';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制笑脸
+            ctx.beginPath();
+            ctx.arc(200, 200, 100, 0, Math.PI * 2, false); // 脸部
+            ctx.fillStyle = 'yellow';
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(160, 160, 10, 0, Math.PI * 2, false); // 左眼
+            ctx.fillStyle = 'black';
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(240, 160, 10, 0, Math.PI * 2, false); // 右眼
+            ctx.fillStyle = 'black';
+            ctx.fill();
+
+            // 添加鼻子
+            ctx.beginPath();
+            ctx.moveTo(200, 190);//将画笔移动到
+            ctx.lineTo(200, 210);//画到
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+
+            ctx.beginPath();// 嘴巴
+            ctx.arc(200, 220, 30, Math.PI * 0.1, Math.PI * 0.9, false); //圆心x,圆心y，半径，开始角度，终止角度，顺时针 
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+
+            // 设置字体样式
+            ctx.font = "25px Arial";
+            ctx.textAlign = "center"; // 文本对齐方式设置为居中
+
+            // 绘制居中的文本在canvas底部
+            var text = "The Canvas brought me to life!";
+            var y = 380; // 将文本垂直位置设置为接近底部
+
+            // 绘制文本
+            ctx.fillText(text, canvas.width / 2, y);
+        };
+    </script>
+</body>
+
+</html>
